@@ -25,8 +25,9 @@ if not os.path.isdir('./result'):
 time_cost_list = []
 IOU_list = []
 IOU_sum = 0
+time_sum = 0
 
-for img in tqdm(range(2)):
+for img in tqdm(range(7)):
     time_start = time.time()
     input_before = cv2.imread(os.path.join(imgfold, (str(img+1) + '_before.jpg')))
     input_after = cv2.imread(os.path.join(imgfold, (str(img+1) + '_after.jpg')))
@@ -45,6 +46,7 @@ for img in tqdm(range(2)):
     ret, result = cv2.threshold(result, 0,255,cv2.THRESH_OTSU)  #二值化
     time_end = time.time()
     time_cost = time_end - time_start
+    time_sum += time_cost
     time_cost_list.append(time_cost)
 
     # 顯示結果與存檔
@@ -62,6 +64,10 @@ for img in tqdm(range(2)):
     IOU_list.append('%.2f'%IOU)
     # print(IOU)
     # cv2.waitKey(0)
+
+# average
+IOU_list.append('%.2f'%(IOU_sum/7))
+time_cost_list.append(time_sum/7)
 
 df = pd.DataFrame({'IOU':IOU_list, 'Time':time_cost_list})
 print(df)
