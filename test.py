@@ -35,7 +35,7 @@ def read_images(path):
         images.append(image)
     images=np.array(images,dtype=np.float32)/255
     return images
-    
+
 def transform(listdir,label,lenSIZE):
     label_str=[]
     for i in range (lenSIZE):
@@ -44,7 +44,7 @@ def transform(listdir,label,lenSIZE):
     return label_str
 
 images = read_images('D:/GitHub/ACV/dataset/mingxang/test/')
-model = load_model('./weight/0214_05-0.83.hdf5')
+model = load_model('./weight/0233_98-0.79.hdf5')
 
 predict = model.predict_classes(images, verbose=1)
 print(predict)

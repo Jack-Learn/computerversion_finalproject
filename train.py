@@ -11,7 +11,7 @@ from keras.optimizers import SGD, Adam
 from keras.preprocessing.image import ImageDataGenerator
 import matplotlib.pyplot as plt
 
-epochs=200
+epochs=100
 batch_size=8
 
 images= []
@@ -46,7 +46,7 @@ def read_main(path):
     return images, labels
 
 images, labels=read_main('D:/GitHub/ACV/dataset/mingxang/train')
-X_train, X_test, y_train, y_test = train_test_split(images, labels, test_size=0.1)                        
+X_train, X_test, y_train, y_test = train_test_split(images, labels, test_size=0.2)                        
 
 
 model = Sequential()
@@ -61,14 +61,13 @@ model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Conv2D(64, kernel_size=3, padding='valid',activation='relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Conv2D(64, kernel_size=3, padding='same',activation='relu'))
-
 model.add(Dropout(0.5))
 
 model.add(Flatten())
 model.add(Dense(256,activation='relu'))
 model.add(Dropout(0.5))
 model.add(Dense(2,activation='softmax'))
-model.summary()
+# model.summary()
 
 model.compile(loss='categorical_crossentropy', optimizer='adam',metrics=['accuracy'])
 
