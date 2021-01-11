@@ -32,10 +32,12 @@ def read_images_labels(path,i):
             sys.stdout.write('\r'+'>'*(i)+' '*(amount-i)+'[%s%%]'%(i*100/amount)+temp)
         else:
             if file.endswith('.jpg'):
-                image=cv2.resize(cv2.imread(abs_path),(128,128))
+                image=cv2.resize(cv2.imread(abs_path),(256,256))
                 images.append(image)
                 labels.append(i-1)
     return images, labels, name
+
+
 
 
 def read_main(path):
@@ -59,15 +61,16 @@ model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Conv2D(64, kernel_size=3, padding='valid',activation='relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Conv2D(64, kernel_size=3, padding='valid',activation='relu'))
+model.add(Dropout(0.5))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Conv2D(64, kernel_size=3, padding='same',activation='relu'))
-model.add(Dropout(0.5))
 
+model.add(Dropout(0.5))
 model.add(Flatten())
 model.add(Dense(256,activation='relu'))
 model.add(Dropout(0.5))
 model.add(Dense(2,activation='softmax'))
-# model.summary()
+model.summary()
 
 model.compile(loss='categorical_crossentropy', optimizer='adam',metrics=['accuracy'])
 
@@ -101,7 +104,7 @@ plt.show()
 def read_images(path):
     images=[]
     for i in range(25):
-        image=cv2.resize(cv2.imread(path+str(i+1)+'.jpg'),(128,128))
+        image=cv2.resize(cv2.imread(path+str(i+1)+'.jpg'),(256,256))
         images.append(image)
     images=np.array(images,dtype=np.float32)/255
     return images
