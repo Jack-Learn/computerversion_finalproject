@@ -44,7 +44,7 @@ def transform(listdir,label,lenSIZE):
     return label_str
 
 images = read_images('D:/GitHub/ACV/dataset/mingxang/test/')
-model = load_model('./weight/0233_98-0.79.hdf5')
+model = load_model('./weight/0244_30-0.75.hdf5')
 
 predict = model.predict_classes(images, verbose=1)
 print(predict)
