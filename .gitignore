@@ -1,6 +1,8 @@
 dataset
 result
 picture
+weight
+logs
 *.json
 *.pdf
 *.pptx
