@@ -13,6 +13,8 @@ def count_area(img, width, height):
     return area
 
 
+
+
 width = int(2590/2)
 height = int(1942/2)
 imgfold = './dataset/test/sample_good'
@@ -26,8 +28,8 @@ time_cost_list = []
 IOU_list = []
 IOU_sum = 0
 time_sum = 0
-index_list = ['1', '2', '3', '4', '5', '6', 'average']
-for img in tqdm(range(6)):
+index_list = ['1', '2', '3', '4', '5', '6', '7', 'average']
+for img in tqdm(range(7)):
     time_start = time.time()
     input_before = cv2.imread(os.path.join(imgfold, (str(img+1) + '_before.jpg')))
     input_after = cv2.imread(os.path.join(imgfold, (str(img+1) + '_after.jpg')))
@@ -49,9 +51,10 @@ for img in tqdm(range(6)):
     img_Guassian = cv2.GaussianBlur(img_Guassian,(5,5),0)
     img_Guassian = cv2.GaussianBlur(img_Guassian,(3,3),0)
     img_Guassian = cv2.GaussianBlur(img_Guassian,(3,3),0)
-    _, result = cv2.threshold(img_Guassian, 0,255,cv2.THRESH_OTSU)  #二值化
-    # cv2.imshow('result', result)
+    # cv2.imshow('img_Guassian', img_Guassian)
     # cv2.waitKey(0)
+    _, result = cv2.threshold(img_Guassian, 0,255,cv2.THRESH_OTSU)  #二值化
+    
     
 
 
