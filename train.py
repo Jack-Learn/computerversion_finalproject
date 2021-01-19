@@ -47,7 +47,7 @@ def read_main(path):
     np.savetxt('name.txt', name, delimiter = ' ',fmt="%s")
     return images, labels
 
-images, labels=read_main('D:/GitHub/ACV/dataset/mingxang/train')
+images, labels=read_main(r'D:\Doucuments\Homework\ACV\Final_Project\Dataset\train-test\train')
 X_train, X_test, y_train, y_test = train_test_split(images, labels, test_size=0.2)                        
 
 
@@ -116,7 +116,7 @@ def transform(listdir,label,lenSIZE):
         label_str.append(temp)
     return label_str
 
-images = read_images('D:/GitHub/ACV/dataset/mingxang/test/')
+images = read_images(r'D:\Doucuments\Homework\ACV\Final_Project\Dataset\train-test\test\')
 model = load_model('./weight/my_modle.h5')
 
 predict = model.predict_classes(images, verbose=1)
